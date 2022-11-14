@@ -24,7 +24,7 @@ confirm_name = False
 name_prompt = input('Before we go any further, what is your full name?')
 
 while confirm_name != True:
-  if name_prompt == '' or name_prompt.startswith(' '):
+  if name_prompt == '' or name_prompt.startswith(' ') or ' ' not in name_prompt:
     print('''
   Please provide your full name.
   ''')
