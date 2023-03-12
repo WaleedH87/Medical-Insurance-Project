@@ -1,0 +1,86 @@
+import math as mt
+import numpy as np
+
+# Medical Insurance Calculator V3.0:
+print('''Welcome to the Medical Insurance Calculator V3.0 by Waleed H
+''')
+input("Press Enter to continue...")
+print('''
+Let's begin!
+''')
+
+# Function to estimate insurance cost:
+def estimate_insurance_cost(name, age, sex, bmi, num_of_children, smoker):
+    estimated_cost = round(250 * age - 128 * sex + 370 * bmi + 425 * num_of_children + 24000 * smoker - 12500, 2)
+    monthly = round((estimated_cost / 12) * 1.0675, 2)
+    print(f"\n{name}, your estimated medical insurance cost is £{estimated_cost} annually or £{monthly} monthly (subject to 6.75% APR)")
+    return estimated_cost
+
+
+# Ask user's name
+name = ''
+while len(name.split()) < 2:
+    name = input('What is your full name? ')
+    if len(name.split()) < 2:
+        print('Please provide your full name.')
+
+
+# Ask user's age
+age = ''
+while not age.isnumeric() or int(age) > 100:
+    age = input('What is your age? ')
+    if not age.isnumeric():
+        print('Please provide your age as a whole number.')
+    elif int(age) > 100:
+        print('Sorry, we do not provide medical insurance for persons aged 101 or more. '
+              'Please find a different insurance provider or provide an age below 101.')
+
+
+# Celebrities
+def same_age(age):
+    celebrities = ['John Doe', 'Jane Smith']  # Change with actual celebrities
+    if age < len(celebrities):
+        print(f'\nNice! You are the same age as {celebrities[age]}!')
+
+
+same_age(age=int(age))
+
+
+# Ask user's gender
+sex = ''
+while sex not in ['0', '1']:
+    gender = input('What gender were you assigned at birth? ')
+    if gender.lower() == 'male':
+        sex = '1'
+    elif gender.lower() == 'female':
+        sex = '0'
+    else:
+        print('Please answer male or female.')
+
+
+# Ask user's BMI
+bmi_value = ''
+while not bmi_value.replace('.', '', 1).isdigit() or float(bmi_value) >= 40:
+    bmi_value = input('What is your BMI? (You can calculate this on the NHS website @ https://www.nhs.uk/live-well/healthy-weight/bmi-calculator/) ')
+    if not bmi_value.replace('.', '', 1).isdigit():
+        print('Please provide a number.')
+    elif float(bmi_value) >= 40:
+        print('Sorry, we do not provide medical insurance for persons with a BMI of 40 or more. '
+              'Please find a different insurance provider, try again once you have lowered your BMI or provide a BMI below 40.')
+
+
+print(f'\nYour BMI is {float(bmi_value)}')
+
+
+# Ask user if they smoke
+smoker_status = 0
+smoke = ''
+while smoke.lower() not in ['yes', 'no']:
+    smoke = input('Do you smoke? ')
+    if smoke.lower() == 'yes':
+        smoker_status = 1
+        print('\nYou are a smoker.')
+    elif smoke.lower() == 'no':
+        print('\nYou are not a smoker.')
+    else:
+        print('Please answer yes or no.')
