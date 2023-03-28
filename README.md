@@ -1,2 +1,3 @@
 # Medical Insurance Project
- Python Project
+
+Practicing my Python knowledge!
